@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-content>
+    <form (ngSubmit)="iniciar()">
+      <h2>Inicio de sesión</h2>
+      <mat-form-field class="full-width-input">
+        <input matInput placeholder="Correo electronico" required>
+      </mat-form-field>
+      <mat-form-field class="full-width-input">
+        <input matInput type="password" placeholder="Contraseña" required>
+      </mat-form-field>
+      <button mat-raised-button color="primary">Login</button>
+    </form>
+  </mat-card-content>
+</mat-card>

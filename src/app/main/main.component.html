@@ -1,0 +1,44 @@
+<p>
+  <mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" (click)="drawer.toggle()" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>FOTO</span>
+    <span class="example-spacer"></span>
+    <mat-form-field fxFlex="40">
+      <mat-label>
+        Buscar
+      </mat-label>
+      <input [(ngModel)]="search_main" type="tel" matInput>
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </mat-toolbar>
+</p>
+
+<mat-drawer-container class="example-container">
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <h2>Bandeja de entrada</h2>
+    <h2>Offtopic</h2>
+    <h2>Asignaturas</h2>
+    <mat-list>
+      <mat-list-item>Aprendizaje Automatico</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Dirección de Proyectos de Desarrollo de Software</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Diseño de Sistemas Interactivos</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Diseño de Sistemas Operativos</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Procesadores del Lenguaje</mat-list-item>
+    </mat-list>
+    <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon><h2>Papelera</h2>
+
+  </mat-drawer>
+
+
+  <div>
+
+
+  </div>
+
+</mat-drawer-container>
