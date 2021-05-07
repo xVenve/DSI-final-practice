@@ -6,37 +6,60 @@
     <span>FOTO</span>
     <span class="example-spacer"></span>
     <mat-form-field fxFlex="40">
-      <mat-label>
-        Buscar
-      </mat-label>
       <input [(ngModel)]="search_main" type="tel" matInput>
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
+
   </mat-toolbar>
 </p>
 
 <mat-drawer-container class="example-container">
   <mat-drawer #drawer class="example-sidenav" mode="side">
-    <h2>Bandeja de entrada</h2>
-    <h2>Offtopic</h2>
+    <h2 (click)="this.change_subject('')">Bandeja de entrada</h2>
+    <h2 (click)="this.change_subject('Off-topic')">Offtopic</h2>
     <h2>Asignaturas</h2>
     <mat-list>
-      <mat-list-item>Aprendizaje Automatico</mat-list-item>
+      <mat-list-item (click)="this.change_subject('AA')">Aprendizaje Automatico</mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>Dirección de Proyectos de Desarrollo de Software</mat-list-item>
+      <mat-list-item (click)="this.change_subject('DPDS')">Dirección de Proyectos de Desarrollo de Software</mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>Diseño de Sistemas Interactivos</mat-list-item>
+      <mat-list-item (click)="this.change_subject('DSI')">Diseño de Sistemas Interactivos</mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>Diseño de Sistemas Operativos</mat-list-item>
+      <mat-list-item (click)="this.change_subject('DSO')">Diseño de Sistemas Operativos</mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>Procesadores del Lenguaje</mat-list-item>
+      <mat-list-item (click)="this.change_subject('PL')"> Procesadores del Lenguaje</mat-list-item>
     </mat-list>
-    <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon><h2>Papelera</h2>
-
+    <h2 (click)="this.change_subject('Papelera')"><mat-icon aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>Papelera</h2>
   </mat-drawer>
 
-
   <div>
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel *ngFor="let email of dataSource | filter:search_main">
+        <mat-expansion-panel-header *ngIf="this.isSubject(email.subject)">
+          <mat-panel-title>
+            <mat-chip-list>
+              <mat-chip>{{email.subject}}</mat-chip>
+            </mat-chip-list>
+            <div class="asunto">{{email.topic}}</div>
+          </mat-panel-title>
+          <mat-panel-description>
+            <div>
+              <mat-icon (click)="this.silent(email.sender)">{{email.noti}}</mat-icon>
+              {{email.sender}}
+            </div>
+            <div>
+              <mat-icon (click)="this.borrar_mail(email)">delete</mat-icon>
+              {{email.date}}
+            </div>
+
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ng-container *ngIf="this.isSubject(email.subject)">
+          {{email.message}}
+        </ng-container>
+      </mat-expansion-panel>
+    </mat-accordion>
+
 
 
   </div>

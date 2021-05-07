@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
@@ -24,11 +26,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MainComponent } from './main/main.component';
+import { FilterPipe } from './filter.pipe';
 @NgModule({
-  declarations: [AppComponent, LoginComponent, MainComponent],
+  declarations: [AppComponent, LoginComponent, MainComponent, FilterPipe],
   imports: [
     BrowserModule,
+    MatChipsModule,
     MatListModule,
+    MatExpansionModule,
     MatSidenavModule,
     MatFormFieldModule,
     AppRoutingModule,
