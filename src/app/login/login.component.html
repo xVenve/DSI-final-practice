@@ -8,7 +8,7 @@
             required>
         </mat-form-field>
         <mat-form-field class="full-width-input" class="form-control">
-          <input matInput type="password" id="password" class="form-control" formControlName="password"
+          <input matInput type="password" id="password" class="form-control" minlength="8" formControlName="password"
             placeholder="Contraseña" required>
         </mat-form-field>
         <button type="submit" [disabled]="!form.valid" (click)="iniciar()" mat-raised-button color="primary">Login</button>
