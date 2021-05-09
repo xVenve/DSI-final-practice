@@ -22,6 +22,7 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {}
 
   public silent(nombre: string) {
+    event.stopPropagation();
     for (let i = 0; i < this.dataSource.length; i++) {
       if (this.dataSource[i].sender === nombre)
         if (this.dataSource[i].noti === 'notifications_none')

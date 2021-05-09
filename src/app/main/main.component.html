@@ -106,7 +106,7 @@
 
             <div class="icon-data mobile">
               <mat-icon (click)="responder('send-mail',email.sender,email.topic)">reply</mat-icon>
-              <mat-icon (click)="this.borrar_mail(email)">delete</mat-icon>
+              <mat-icon (click)="this.borrar_mail(email); accordion.closeAll()">delete</mat-icon>
               <mat-icon (click)="reenviar('send-mail',email.topic, email.message)">forward</mat-icon>
 
               {{email.date}}
