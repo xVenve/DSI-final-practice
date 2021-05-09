@@ -31,8 +31,97 @@ table{
 }
 
 .asunto{
-  margin-top: 7px;
   margin-left: 10px;
 }
 
+
+#send-mail {
+  width: 70%;
+  z-index: 10;
+  position: absolute;
+  padding: 50px;
+  top: 50%;  /* position the top  edge of the element at the middle of the parent */
+  left: 50%; /* position the left edge of the element at the middle of the parent */
+  transform: translate(-50%, -50%); /* This is a shorthand of translateX(-50%) and translateY(-50%) */
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+#botones-send-mail {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.boton-redactar{
+  margin-right: 10px;
+}
+
+#zona-contactos{
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1rem;
+
+    mat-icon {
+        margin-right: 8px;
+    }
+}
+
+#send-mail{
+  display: none;
+}
+
+.icon-data{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1rem;
+
+    mat-icon {
+        margin-right: 8px;
+    }
+}
+
+.mobileshow {
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .mobile {
+    display: none;
+  }
+  .mobileshow {
+    display: block;
+  }
+  .example-headers-align .mat-expansion-panel-header-title,
+  .example-headers-align .mat-expansion-panel-header-description {
+    flex-basis: auto;
+  }
+
+  mat-toolbar img {
+    display: none;
+  }
+  .searchbar{
+    width: auto;
+  }
+
+  .example-sidenav {
+    width: 100%;
+  }
+
+  #send-mail {
+    top: 50%;
+    height: 70%;
+    transform: translate(-50%, -50%); /* This is a shorthand of translateX(-50%) and translateY(-50%) */
+
+  }
+}
 

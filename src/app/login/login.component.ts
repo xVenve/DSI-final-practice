@@ -5,7 +5,9 @@ import {
   ActivatedRoute,
   NavigationStart,
 } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+
+
 
 
 @Component({
@@ -14,16 +16,26 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder
   ) {}
 
-  ngOnInit(): void {}
+  form: FormGroup;
+
+  ngOnInit() {
+    this.form = this.fb.group({
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, Validators.required],
+    });
+  }
 
   public iniciar() {
     this.router.navigate(['main/']);
   }
 }
+
+
 

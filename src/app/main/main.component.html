@@ -1,67 +1,140 @@
-<p>
-  <mat-toolbar color="primary">
+
+<mat-toolbar color="primary">
     <button mat-icon-button class="example-icon" (click)="drawer.toggle()" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
-    <span>FOTO</span>
+    <span><img src="assets/img/logo2.png" style="width:70px"></span>
     <span class="example-spacer"></span>
-    <mat-form-field fxFlex="40">
+    <mat-icon matSuffix>search</mat-icon>
+    <mat-form-field class="searchbar" fxFlex="40">
       <input [(ngModel)]="search_main" type="tel" matInput>
-      <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
+    <mat-icon class="mobileshow" (click)="abrir('send-mail')">send</mat-icon>
+    <mat-chip color="primary" class="mobile" (click)="abrir('send-mail')">{{texto_redactar}}<mat-icon style ="padding-left: 5px">send</mat-icon></mat-chip>
+    <button mat-button [matMenuTriggerFor] ="menu"><mat-icon>contacts</mat-icon></button>
+    <mat-menu #menu="matMenu">
+      <button (click)="escoger_contacto(c.name)" mat-menu-item *ngFor="let c of CONTACT_DATA">{{c.name}}</button>
+    </mat-menu>
+</mat-toolbar>
 
-  </mat-toolbar>
-</p>
+
 
 <mat-drawer-container class="example-container">
   <mat-drawer #drawer class="example-sidenav" mode="side">
-    <h2 (click)="this.change_subject('')">Bandeja de entrada</h2>
-    <h2 (click)="this.change_subject('Off-topic')">Offtopic</h2>
-    <h2>Asignaturas</h2>
-    <mat-list>
-      <mat-list-item (click)="this.change_subject('AA')">Aprendizaje Automatico</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item (click)="this.change_subject('DPDS')">Dirección de Proyectos de Desarrollo de Software</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item (click)="this.change_subject('DSI')">Diseño de Sistemas Interactivos</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item (click)="this.change_subject('DSO')">Diseño de Sistemas Operativos</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item (click)="this.change_subject('PL')"> Procesadores del Lenguaje</mat-list-item>
-    </mat-list>
-    <h2 (click)="this.change_subject('Papelera')"><mat-icon aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>Papelera</h2>
+    <button mat-button (click)="this.change_subject(''); accordion.closeAll()" class="menu-button">
+      <mat-icon>inbox</mat-icon>
+      <span>Bandeja de entrada</span>
+    </button>
+    <button mat-button (click)="this.change_subject('Off-topic'); accordion.closeAll()" class="menu-button">
+      <mat-icon>highlight_off</mat-icon>
+      <span>Offtopic</span>
+    </button>
+    <button mat-button (click)="this.change_subject('Enviado'); accordion.closeAll()" class="menu-button">
+      <mat-icon>send</mat-icon>
+      <span>Enviados</span>
+    </button>
+    <br>
+    <button mat-button (click)="drawer.toggle(); this.change_subject('AA'); accordion.closeAll()" class="menu-button">
+      <span>Aprendizaje Automatico</span>
+    </button>
+    <button mat-button (click)="drawer.toggle(); this.change_subject('DPDS'); accordion.closeAll()" class="menu-button">
+      <span>Dirección de Proyectos</span>
+    </button>
+    <button mat-button (click)="drawer.toggle(); this.change_subject('DSI'); accordion.closeAll()" class="menu-button">
+      <span>Diseño de Sistemas Interactivos</span>
+    </button>
+    <button mat-button (click)="drawer.toggle(); this.change_subject('DSO'); accordion.closeAll()" class="menu-button">
+      <span>Diseño de Sistemas Operativos</span>
+    </button>
+    <button mat-button (click)="drawer.toggle(); this.change_subject('PL'); accordion.closeAll()" class="menu-button">
+      <span>Procesadores del Lenguaje</span>
+    </button>
+    <button mat-button (click)="drawer.toggle(); this.change_subject('Papelera'); accordion.closeAll()" class="menu-button">
+      <mat-icon>delete</mat-icon>
+      <span>Papelera</span>
+    </button>
+    <button mat-button (click)="drawer.toggle(); accordion.closeAll(); cerrar_sesion()" class="menu-button">
+      <mat-icon [ngStyle]="{'color':'red'}">exit_to_app</mat-icon>
+      <span style="color:'red'">Cerrar sesión</span>
+    </button>
+
+
+
   </mat-drawer>
 
   <div>
+    <mat-card id ="send-mail">
+      <div id="zona-contactos">
+        <mat-form-field class="example-full-width">
+          <mat-label>Para:</mat-label>
+          <input matInput [(ngModel)]="selected_contact">
+        </mat-form-field>
+        <button mat-stroked-button [matMenuTriggerFor] ="menu"><mat-icon>perm_identity</mat-icon>Seleccionar contacto</button>
+
+      </div>
+      <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Asunto:</mat-label>
+        <input matInput [(ngModel)]="subject">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Mensaje</mat-label>
+        <textarea cols= "30" rows= "12" matInput [(ngModel)]="message"></textarea>
+      </mat-form-field>
+      <br>
+      <div id="botones-send-mail">
+        <button class="boton-redactar" mat-raised-button color="primary" (click)="send_mail()">Enviar</button>
+        <button class="boton-redactar" (click)="cerrar('send-mail')" mat-raised-button color="warn">Cancelar</button>
+      </div>
+
+    </mat-card>
     <mat-accordion class="example-headers-align" multi>
       <mat-expansion-panel *ngFor="let email of dataSource | filter:search_main">
         <mat-expansion-panel-header *ngIf="this.isSubject(email.subject)">
-          <mat-panel-title>
+          <mat-panel-title class="icon-data">
             <mat-chip-list>
               <mat-chip>{{email.subject}}</mat-chip>
             </mat-chip-list>
             <div class="asunto">{{email.topic}}</div>
           </mat-panel-title>
           <mat-panel-description>
-            <div>
+            <div class="icon-data mobile">
               <mat-icon (click)="this.silent(email.sender)">{{email.noti}}</mat-icon>
               {{email.sender}}
             </div>
-            <div>
+
+            <div class="icon-data mobile">
+              <mat-icon (click)="responder('send-mail',email.sender,email.topic)">reply</mat-icon>
               <mat-icon (click)="this.borrar_mail(email)">delete</mat-icon>
+              <mat-icon (click)="reenviar('send-mail',email.topic, email.message)">forward</mat-icon>
+
               {{email.date}}
             </div>
 
           </mat-panel-description>
         </mat-expansion-panel-header>
         <ng-container *ngIf="this.isSubject(email.subject)">
+            <div class="icon-data mobileshow">
+              <mat-icon (click)="responder('send-mail',email.sender,email.topic)">reply</mat-icon>
+              <mat-icon (click)="this.borrar_mail(email); accordion.closeAll()">delete</mat-icon>
+              <mat-icon (click)="reenviar('send-mail',email.topic, email.message)">forward</mat-icon>
+              <mat-icon (click)="this.silent(email.sender)">{{email.noti}}</mat-icon>
+
+            </div>
+            <div class="icon-data mobileshow">
+              {{email.sender}}
+            </div>
+            <div class="icon-data mobileshow">
+              {{email.date}}
+               <mat-divider></mat-divider>
+
+            </div>
+
           {{email.message}}
         </ng-container>
       </mat-expansion-panel>
     </mat-accordion>
-
-
-
   </div>
 
 </mat-drawer-container>

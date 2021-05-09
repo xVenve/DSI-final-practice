@@ -1,14 +1,19 @@
-<mat-card>
-  <mat-card-content>
-    <form (ngSubmit)="iniciar()">
-      <h2>Inicio de sesión</h2>
-      <mat-form-field class="full-width-input">
-        <input matInput placeholder="Correo electronico" required>
-      </mat-form-field>
-      <mat-form-field class="full-width-input">
-        <input matInput type="password" placeholder="Contraseña" required>
-      </mat-form-field>
-      <button mat-raised-button color="primary">Login</button>
-    </form>
-  </mat-card-content>
-</mat-card>
+<div>
+  <mat-card>
+    <mat-card-content>
+      <form class="form-horizontal" [formGroup]="form">
+        <h2>Inicio de sesión</h2>
+        <mat-form-field class="full-width-input">
+          <input matInput placeholder="Correo electronico" type="text" id="email" class="form-control" formControlName="email"
+            required>
+        </mat-form-field>
+        <mat-form-field class="full-width-input" class="form-control">
+          <input matInput type="password" id="password" class="form-control" formControlName="password"
+            placeholder="Contraseña" required>
+        </mat-form-field>
+        <button type="submit" [disabled]="!form.valid" (click)="iniciar()" mat-raised-button color="primary">Login</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+

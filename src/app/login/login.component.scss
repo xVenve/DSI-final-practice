@@ -7,3 +7,10 @@ mat-card {
 mat-form-field {
   display: block;
 }
+
+div {
+  background-color: #6495ED;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
