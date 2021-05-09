@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   public iniciar() {
-    this.router.navigate(['main/']);
+    this.router.navigate(['main/Inbox']);
   }
 }
 

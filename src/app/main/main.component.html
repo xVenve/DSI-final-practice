@@ -21,15 +21,15 @@
 
 <mat-drawer-container class="example-container">
   <mat-drawer #drawer class="example-sidenav" mode="side">
-    <button mat-button (click)="this.change_subject(''); accordion.closeAll()" class="menu-button">
+    <button mat-button (click)="drawer.toggle(); this.change_subject('Inbox'); accordion.closeAll()" class="menu-button">
       <mat-icon>inbox</mat-icon>
       <span>Bandeja de entrada</span>
     </button>
-    <button mat-button (click)="this.change_subject('Off-topic'); accordion.closeAll()" class="menu-button">
+    <button mat-button (click)="drawer.toggle(); this.change_subject('Off-topic'); accordion.closeAll()" class="menu-button">
       <mat-icon>highlight_off</mat-icon>
       <span>Offtopic</span>
     </button>
-    <button mat-button (click)="this.change_subject('Enviado'); accordion.closeAll()" class="menu-button">
+    <button mat-button (click)="drawer.toggle(); this.change_subject('Enviado'); accordion.closeAll()" class="menu-button">
       <mat-icon>send</mat-icon>
       <span>Enviados</span>
     </button>
@@ -94,7 +94,7 @@
         <mat-expansion-panel-header *ngIf="this.isSubject(email.subject)">
           <mat-panel-title class="icon-data">
             <mat-chip-list>
-              <mat-chip>{{email.subject}}</mat-chip>
+              <mat-chip (click)="this.change_subject(email.subject); accordion.closeAll()">{{email.subject}}</mat-chip>
             </mat-chip-list>
             <div class="asunto">{{email.topic}}</div>
           </mat-panel-title>

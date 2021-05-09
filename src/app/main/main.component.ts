@@ -10,7 +10,7 @@ export class MainComponent implements OnInit {
   @ViewChild(MatAccordion) accordion: MatAccordion;
 
   search_main: string = '';
-  selected_subject: string = '';
+  selected_subject: string = 'Inbox';
   selected_contact: string = '';
   texto_redactar: string = 'Redactar';
 
@@ -38,9 +38,9 @@ export class MainComponent implements OnInit {
 
   public isSubject(nombre_subject: string) {
     if (
-      this.selected_subject == '' &&
-      nombre_subject !== 'Papelera' &&
-      nombre_subject !== 'Enviado'
+      this.selected_subject == 'Inbox' &&
+      nombre_subject != 'Papelera' &&
+      nombre_subject != 'Enviado'
     )
       return true;
 
