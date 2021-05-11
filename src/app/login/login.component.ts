@@ -1,14 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  Router,
-  RouterModule,
-  ActivatedRoute,
-  NavigationStart,
-} from '@angular/router';
-import { FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
-
-
-
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +8,6 @@ import { FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -36,6 +27,3 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['main/Inbox']);
   }
 }
-
-
-

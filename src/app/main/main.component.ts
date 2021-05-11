@@ -146,9 +146,6 @@ export interface email {
   message: string;
 }
 
-
-
-
 const ELEMENT_DATA: email[] = [
   {
     sender: 'JORGE RODRIGUEZ FRAILE',
@@ -156,7 +153,8 @@ const ELEMENT_DATA: email[] = [
     date: '07/05/2021 10:48PM',
     noti: 'notifications_none',
     subject: 'AA',
-    message: 'Hola, he estado hablando con los demás compañeros y creo que nos vendría bien dejar la reunión para el día 16. Así podremos llevar los puntos más claros.Espero tu respuesta',
+    message:
+      'Hola, he estado hablando con los demás compañeros y creo que nos vendría bien dejar la reunión para el día 16. Así podremos llevar los puntos más claros.Espero tu respuesta',
   },
   {
     sender: 'CARLOS RUBIO OLIVARES',
@@ -164,7 +162,8 @@ const ELEMENT_DATA: email[] = [
     date: '29/04/2021 09:03AM',
     noti: 'notifications_none',
     subject: 'PL',
-    message: 'Buenas, ¿tienes los ejercicios de repaso para el examen de mañana? He formateado el ordenador y he perdido los documentos. Pasamelos cuando puedas, por favor.',
+    message:
+      'Buenas, ¿tienes los ejercicios de repaso para el examen de mañana? He formateado el ordenador y he perdido los documentos. Pasamelos cuando puedas, por favor.',
   },
   {
     sender: 'JORGE RODRIGUEZ FRAILE',
@@ -181,7 +180,8 @@ const ELEMENT_DATA: email[] = [
     date: '25/04/2021 12:11AM',
     noti: 'notifications_none',
     subject: 'DPDS',
-    message: 'He estado mirando los documentos de DPDS que quedan por mandar y sólo quedan los 2 últimos.Me voy a encargar de generar un borrador y te los enviaré para rellenar lo que queda y formatearlo.',
+    message:
+      'He estado mirando los documentos de DPDS que quedan por mandar y sólo quedan los 2 últimos.Me voy a encargar de generar un borrador y te los enviaré para rellenar lo que queda y formatearlo.',
   },
   {
     sender: 'RAUL GIMENEZ DE DIOS',
@@ -189,7 +189,7 @@ const ELEMENT_DATA: email[] = [
     date: '20/04/2021 19:35PM',
     noti: 'notifications_none',
     subject: 'DSI',
-    message: 'Te escribo para comentarte si tardas mucho en iniciar una web en angular, ya que a mi me tarda como unos 5 minutos. Si tienes el mismo problema podemos postear un mensaje en el foro.',
+    message:
+      'Te escribo para comentarte si tardas mucho en iniciar una web en angular, ya que a mi me tarda como unos 5 minutos. Si tienes el mismo problema podemos postear un mensaje en el foro.',
   },
 ];
-
