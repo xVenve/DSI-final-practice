@@ -2,16 +2,16 @@
   <mat-card>
     <mat-card-content>
       <form class="form-horizontal" [formGroup]="form">
-        <h2>Inicio de sesión</h2>
+        <h2>Login</h2>
         <mat-form-field class="full-width-input">
-          <input matInput placeholder="Correo electronico" type="text" id="email" class="form-control"
+          <input matInput placeholder="E-mail address" type="text" id="email" class="form-control"
             formControlName="email" required>
         </mat-form-field>
         <mat-form-field class="full-width-input" class="form-control">
           <input matInput type="password" id="password" class="form-control" minlength="8" formControlName="password"
-            placeholder="Contraseña" required>
+            placeholder="Password" required>
         </mat-form-field>
-        <button type="submit" [disabled]="!form.valid" (click)="iniciar()" mat-raised-button
+        <button type="submit" [disabled]="!form.valid" (click)="start()" mat-raised-button
           color="primary">Login</button>
       </form>
     </mat-card-content>

@@ -12,9 +12,9 @@ export class MainComponent implements OnInit {
   search_main: string = '';
   selected_subject: string = 'Inbox';
   selected_contact: string = '';
-  texto_redactar: string = 'Redactar';
+  text_compose: string = 'Compose';
 
-  displayedColumns: string[] = ['Usuario', 'Asunto', 'Fecha'];
+  displayedColumns: string[] = ['User', 'Subject', 'Date'];
   dataSource = ELEMENT_DATA;
 
   constructor(private router: Router, private route: ActivatedRoute) {}
@@ -31,28 +31,28 @@ export class MainComponent implements OnInit {
     }
   }
 
-  public change_subject(nombre_subject: string) {
-    this.selected_subject = nombre_subject;
-    this.router.navigate(['main/' + nombre_subject]);
+  public change_subject(subject_name: string) {
+    this.selected_subject = subject_name;
+    this.router.navigate(['main/' + subject_name]);
   }
 
-  public isSubject(nombre_subject: string) {
+  public isSubject(subject_name: string) {
     if (
       this.selected_subject == 'Inbox' &&
-      nombre_subject != 'Papelera' &&
-      nombre_subject != 'Enviado'
+      subject_name != 'Trash' &&
+      subject_name != 'Sent'
     )
       return true;
 
-    if (nombre_subject == this.selected_subject) return true;
+    if (subject_name == this.selected_subject) return true;
 
     return false;
   }
-  public borrar_mail(mail: email) {
-    mail.subject = 'Papelera';
+  public delete_mail(mail: email) {
+    mail.subject = 'Trash';
   }
 
-  public cerrar_sesion() {
+  public log_out() {
     this.router.navigate(['login/']);
   }
 
@@ -67,7 +67,7 @@ export class MainComponent implements OnInit {
       topic: this.subject,
       date: d.toLocaleString(),
       noti: 'notifications_none',
-      subject: 'Enviado',
+      subject: 'Sent',
       message: this.message,
     });
     this.selected_contact = '';
@@ -76,7 +76,7 @@ export class MainComponent implements OnInit {
     document.getElementById('send-mail').style.display = 'none';
   }
 
-  public cerrar(id: string) {
+  public close(id: string) {
     this.selected_contact = '';
     document.getElementById(id).style.display = 'none';
     this.selected_contact = '';
@@ -84,29 +84,29 @@ export class MainComponent implements OnInit {
     this.message = '';
   }
 
-  public abrir(id: string) {
+  public open(id: string) {
     document.getElementById(id).style.display = 'block';
   }
 
-  public responder(id: string, contacto: string, subject: string) {
+  public answer(id: string, contact: string, subject: string) {
     event.stopPropagation();
-    this.abrir(id);
-    this.selected_contact = contacto;
+    this.open(id);
+    this.selected_contact = contact;
     var str = new String('RE: ');
     this.subject = str.concat(subject);
   }
 
-  public reenviar(id: string, subject: string, message: string) {
+  public resend(id: string, subject: string, message: string) {
     event.stopPropagation();
-    this.abrir(id);
+    this.open(id);
     var str = new String('FWD: ');
     this.subject = str.concat(subject);
     this.message = message;
   }
 
-  public escoger_contacto(nombre_contacto: string) {
-    this.selected_contact = nombre_contacto;
-    this.abrir('send-mail');
+  public choose_contact(contact_name: string) {
+    this.selected_contact = contact_name;
+    this.open('send-mail');
   }
 
   CONTACT_DATA: contact[] = [
@@ -149,47 +149,47 @@ export interface email {
 const ELEMENT_DATA: email[] = [
   {
     sender: 'JORGE RODRIGUEZ FRAILE',
-    topic: 'Reunión del día 15/05',
+    topic: 'Meeting of 05/15',
     date: '07/05/2021 10:48PM',
     noti: 'notifications_none',
-    subject: 'AA',
+    subject: 'ML',
     message:
-      'Hola, he estado hablando con los demás compañeros y creo que nos vendría bien dejar la reunión para el día 16. Así podremos llevar los puntos más claros.Espero tu respuesta',
+      'Hi, I have been talking with the other colleagues and I think it would be good for us to leave the meeting for the 16th. This way we will be able to bring the points clearer and I am waiting for your answer',
   },
   {
     sender: 'CARLOS RUBIO OLIVARES',
-    topic: 'Ejercicios del examen de mañana',
-    date: '29/04/2021 09:03AM',
+    topic: 'Exercises for tomorrow\'s exam',
+    date: '04/29/2021 09:03AM',
     noti: 'notifications_none',
-    subject: 'PL',
+    subject: 'C',
     message:
-      'Buenas, ¿tienes los ejercicios de repaso para el examen de mañana? He formateado el ordenador y he perdido los documentos. Pasamelos cuando puedas, por favor.',
+      'Hi, do you have the review exercises for tomorrow\'s exam? I have formatted the computer and lost the documents. Pass them to me when you can, please.',
   },
   {
     sender: 'JORGE RODRIGUEZ FRAILE',
-    topic: 'Entrega de la práctica.',
+    topic: 'Practice delivery',
     date: '28/03/2021 17:53PM',
     noti: 'notifications_none',
-    subject: 'AA',
+    subject: 'ML',
     message:
-      'La práctica 2 la he enviado, pero no aparece como entregado, solo como borrador. ¿Puedes probar a enviarlo tú? Si no, tendré que enviar un correo al profesor.',
+      'Practice 2 I\'ve submitted it, but it doesn\'t show up as submitted, only as a draft. can you try submitting it yourself? If not, I will have to send an email to the teacher.',
   },
   {
     sender: 'RAUL GIMENEZ DE DIOS',
-    topic: 'Documentos a entregar',
-    date: '25/04/2021 12:11AM',
+    topic: 'Documents to deliver',
+    date: '04/25/2021 12:11AM',
     noti: 'notifications_none',
-    subject: 'DPDS',
+    subject: 'SDPM',
     message:
-      'He estado mirando los documentos de DPDS que quedan por mandar y sólo quedan los 2 últimos.Me voy a encargar de generar un borrador y te los enviaré para rellenar lo que queda y formatearlo.',
+      'I have been looking at the SDPM documents left to send and there are only the last 2 left.I am going to take care of generating a draft and send them to you to fill in what is left and format it.'
   },
   {
     sender: 'RAUL GIMENEZ DE DIOS',
-    topic: 'Duda Angular',
+    topic: 'Angular Doubt',
     date: '20/04/2021 19:35PM',
     noti: 'notifications_none',
-    subject: 'DSI',
+    subject: 'DIS',
     message:
-      'Te escribo para comentarte si tardas mucho en iniciar una web en angular, ya que a mi me tarda como unos 5 minutos. Si tienes el mismo problema podemos postear un mensaje en el foro.',
+      'I\'m writing to let you know if it takes too long to start a website in angular, as it takes me about 5 minutes. If you have the same problem we can post a message in the forum.',
   },
 ];

@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public iniciar() {
+  public start() {
     this.router.navigate(['main/Inbox']);
   }
 }

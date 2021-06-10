@@ -8,15 +8,15 @@
   <mat-form-field class="searchbar" fxFlex="40">
     <input [(ngModel)]="search_main" type="tel" matInput>
   </mat-form-field>
-  <mat-icon class="mobileshow" (click)="abrir('send-mail')">send</mat-icon>
-  <mat-chip color="primary" class="mobile" (click)="abrir('send-mail')">{{texto_redactar}}<mat-icon
+  <mat-icon class="mobileshow" (click)="open('send-mail')">send</mat-icon>
+  <mat-chip color="primary" class="mobile" (click)="open('send-mail')">{{text_compose}}<mat-icon
       style="padding-left: 5px">send</mat-icon>
   </mat-chip>
   <button mat-button [matMenuTriggerFor]="menu">
     <mat-icon>contacts</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button (click)="escoger_contacto(c.name)" mat-menu-item *ngFor="let c of CONTACT_DATA">{{c.name}}</button>
+    <button (click)="choose_contact(c.name)" mat-menu-item *ngFor="let c of CONTACT_DATA">{{c.name}}</button>
   </mat-menu>
 </mat-toolbar>
 
@@ -27,7 +27,7 @@
     <button mat-button (click)="drawer.toggle(); this.change_subject('Inbox'); accordion.closeAll()"
       class="menu-button">
       <mat-icon>inbox</mat-icon>
-      <span>Bandeja de entrada</span>
+      <span>Inbox</span>
     </button>
     <button mat-button (click)="drawer.toggle(); this.change_subject('Off-topic'); accordion.closeAll()"
       class="menu-button">
@@ -37,32 +37,32 @@
     <button mat-button (click)="drawer.toggle(); this.change_subject('Enviado'); accordion.closeAll()"
       class="menu-button">
       <mat-icon>send</mat-icon>
-      <span>Enviados</span>
+      <span>Sent</span>
     </button>
     <br>
-    <button mat-button (click)="drawer.toggle(); this.change_subject('AA'); accordion.closeAll()" class="menu-button">
-      <span>Aprendizaje Automatico</span>
+    <button mat-button (click)="drawer.toggle(); this.change_subject('ML'); accordion.closeAll()" class="menu-button">
+      <span>Machine Learning</span>
     </button>
-    <button mat-button (click)="drawer.toggle(); this.change_subject('DPDS'); accordion.closeAll()" class="menu-button">
-      <span>Dirección de Proyectos</span>
+    <button mat-button (click)="drawer.toggle(); this.change_subject('SDPM'); accordion.closeAll()" class="menu-button">
+      <span>Software Development Projects Management</span>
     </button>
-    <button mat-button (click)="drawer.toggle(); this.change_subject('DSI'); accordion.closeAll()" class="menu-button">
-      <span>Diseño de Sistemas Interactivos</span>
+    <button mat-button (click)="drawer.toggle(); this.change_subject('DIS'); accordion.closeAll()" class="menu-button">
+      <span>Design of Interactive Systems</span>
     </button>
     <button mat-button (click)="drawer.toggle(); this.change_subject('DSO'); accordion.closeAll()" class="menu-button">
-      <span>Diseño de Sistemas Operativos</span>
+      <span>Operating Systems Design</span>
     </button>
-    <button mat-button (click)="drawer.toggle(); this.change_subject('PL'); accordion.closeAll()" class="menu-button">
-      <span>Procesadores del Lenguaje</span>
+    <button mat-button (click)="drawer.toggle(); this.change_subject('C'); accordion.closeAll()" class="menu-button">
+      <span>Compilers</span>
     </button>
-    <button mat-button (click)="drawer.toggle(); this.change_subject('Papelera'); accordion.closeAll()"
+    <button mat-button (click)="drawer.toggle(); this.change_subject('Trash'); accordion.closeAll()"
       class="menu-button">
       <mat-icon>delete</mat-icon>
-      <span>Papelera</span>
+      <span>Trash</span>
     </button>
-    <button mat-button (click)="drawer.toggle(); accordion.closeAll(); cerrar_sesion()" class="menu-button">
+    <button mat-button (click)="drawer.toggle(); accordion.closeAll(); log_out()" class="menu-button">
       <mat-icon [ngStyle]="{'color':'red'}">exit_to_app</mat-icon>
-      <span style="color:'red'">Cerrar sesión</span>
+      <span style="color:'red'">Log out</span>
     </button>
 
 
@@ -71,30 +71,30 @@
 
   <div>
     <mat-card id="send-mail">
-      <div id="zona-contactos">
+      <div id="zone-contacts">
         <mat-form-field class="full-width">
-          <mat-label>Para:</mat-label>
+          <mat-label>To:</mat-label>
           <input matInput [(ngModel)]="selected_contact">
         </mat-form-field>
         <button mat-stroked-button [matMenuTriggerFor]="menu">
-          <mat-icon>perm_identity</mat-icon>Seleccionar contacto
+          <mat-icon>perm_identity</mat-icon>Select contact
         </button>
 
       </div>
       <br>
       <mat-form-field class="full-width">
-        <mat-label>Asunto:</mat-label>
+        <mat-label>Subject:</mat-label>
         <input matInput [(ngModel)]="subject">
       </mat-form-field>
       <br>
       <mat-form-field class="full-width">
-        <mat-label>Mensaje</mat-label>
+        <mat-label>Message</mat-label>
         <textarea cols="30" rows="12" matInput [(ngModel)]="message"></textarea>
       </mat-form-field>
       <br>
-      <div id="botones-send-mail">
-        <button class="boton-redactar" mat-raised-button color="primary" (click)="send_mail()">Enviar</button>
-        <button class="boton-redactar" (click)="cerrar('send-mail')" mat-raised-button color="warn">Cancelar</button>
+      <div id="buttons-send-mail">
+        <button class="button-compose" mat-raised-button color="primary" (click)="send_mail()">Send</button>
+        <button class="button-compose" (click)="close('send-mail')" mat-raised-button color="warn">Cancel</button>
       </div>
 
     </mat-card>
@@ -105,7 +105,7 @@
             <mat-chip-list>
               <mat-chip (click)="this.change_subject(email.subject); accordion.closeAll()">{{email.subject}}</mat-chip>
             </mat-chip-list>
-            <div class="asunto">{{email.topic}}</div>
+            <div class="subject">{{email.topic}}</div>
           </mat-panel-title>
           <mat-panel-description>
             <div class="icon-data mobile">
@@ -114,9 +114,9 @@
             </div>
 
             <div class="icon-data mobile">
-              <mat-icon (click)="responder('send-mail',email.sender,email.topic)">reply</mat-icon>
-              <mat-icon (click)="this.borrar_mail(email); accordion.closeAll()">delete</mat-icon>
-              <mat-icon (click)="reenviar('send-mail',email.topic, email.message)">forward</mat-icon>
+              <mat-icon (click)="answer('send-mail',email.sender,email.topic)">reply</mat-icon>
+              <mat-icon (click)="this.delete_mail(email); accordion.closeAll()">delete</mat-icon>
+              <mat-icon (click)="resend('send-mail',email.topic, email.message)">forward</mat-icon>
 
               {{email.date}}
             </div>
@@ -125,9 +125,9 @@
         </mat-expansion-panel-header>
         <ng-container *ngIf="this.isSubject(email.subject)">
           <div class="icon-data mobileshow">
-            <mat-icon (click)="responder('send-mail',email.sender,email.topic)">reply</mat-icon>
-            <mat-icon (click)="this.borrar_mail(email); accordion.closeAll()">delete</mat-icon>
-            <mat-icon (click)="reenviar('send-mail',email.topic, email.message)">forward</mat-icon>
+            <mat-icon (click)="answer('send-mail',email.sender,email.topic)">reply</mat-icon>
+            <mat-icon (click)="this.delete_mail(email); accordion.closeAll()">delete</mat-icon>
+            <mat-icon (click)="resend('send-mail',email.topic, email.message)">forward</mat-icon>
             <mat-icon (click)="this.silent(email.sender)">{{email.noti}}</mat-icon>
 
           </div>
