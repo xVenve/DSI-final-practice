@@ -1,5 +1,9 @@
 # DSI Final Practice
 
+![W3C Validation](https://img.shields.io/w3c-validation/html?preset=HTML%2C%20SVG%201.1%2C%20MathML%203.0&targetUrl=https%3A%2F%2Fxvenve.github.io%2FDSI-final-practice%2F)
+![GitHub top language](https://img.shields.io/github/languages/top/xVenve/DSI-final-practice)
+![GitHub repo size](https://img.shields.io/github/repo-size/xVenve/DSI-final-practice)
+
 ## Design context
 
 [Design context](https://drive.google.com/file/d/1Aa4cbZfpO1osxMn4k8YKm4x7W5krbPti/view?usp=sharing)
